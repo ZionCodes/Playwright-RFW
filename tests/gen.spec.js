@@ -1,0 +1,55 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://www.relocateforwork.com/');
+  await page.getByPlaceholder('Enter your email').click();
+  await page.getByPlaceholder('Enter your email').fill('ziongonet@gmail.com');
+  await page.getByRole('button', { name: 'Subscribe' }).click();
+  await page.locator('#navbar-default').getByRole('link', { name: 'Blog' }).click();
+  await page.getByRole('navigation').getByRole('link', { name: 'Relocate for Work Logo' }).click();
+  await page.locator('#navbar-default').getByRole('link', { name: 'Post Job' }).click();
+  await page.getByPlaceholder('Job Title').click();
+  await page.getByPlaceholder('Job Title').fill('Test');
+  await page.getByPlaceholder('Country').click();
+  await page.getByPlaceholder('Country').fill('Germany');
+  await page.getByPlaceholder('Country').click();
+  await page.getByPlaceholder('Country').click();
+  await page.getByPlaceholder('Country').click();
+  await page.getByPlaceholder('Link to Application page or').click();
+  await page.getByPlaceholder('Link to Application page or').click();
+  await page.getByPlaceholder('Link to Application page or').fill('https://www.relocateforwork.com/');
+  await page.getByPlaceholder('Link to Application page or').click();
+  await page.getByRole('paragraph').nth(1).click();
+  await page.locator('.ql-clipboard').fill('https://www.relocateforwork.com/');
+  await page.getByText('https://www.relocateforwork.').click();
+  await page.getByText('https://www.relocateforwork.').dblclick();
+  await page.locator('div').filter({ hasText: /^https:\/\/www\.relocateforwork\.com\/$/ }).nth(1).press('ControlOrMeta+a');
+  await page.locator('.ql-bold').click();
+  await page.locator('p').filter({ hasText: 'https://www.relocateforwork.' }).click();
+  await page.locator('.ql-clipboard').fill('https://www.relocateforwork.com/');
+  await page.getByText('https://www.relocateforwork.').nth(1).click();
+  await page.getByText('https://www.relocateforwork.').nth(1).click();
+  await page.getByText('https://www.relocateforwork.com/https://www.relocateforwork.com/').click();
+  await page.getByRole('paragraph').nth(2).click();
+  await page.getByText('https://www.relocateforwork.').nth(1).click();
+  await page.getByText('https://www.relocateforwork.').nth(1).click();
+  await page.getByText('https://www.relocateforwork.').nth(1).click();
+  await page.getByText('https://www.relocateforwork.').nth(1).click({
+    clickCount: 4
+  });
+  await page.locator('.ql-italic').click();
+  await page.locator('section').click();
+  await page.locator('input[name="company-name"]').click();
+  await page.locator('input[name="company-name"]').fill('Zion');
+  await page.locator('input[name="city"]').click();
+  await page.locator('input[name="city"]').fill('Yenagoa');
+  await page.locator('input[name="logo"]').click();
+  await page.locator('input[name="logo"]').setInputFiles('Sendcloud_Logo-Secondary_Blue-White_RGB.png');
+  await page.locator('input[name="email"]').click();
+  await page.locator('input[name="email"]').fill('zion@zion.com');
+  await page.locator('input[name="email"]').click();
+  await page.locator('input[name="url"]').click();
+  await page.locator('input[name="url"]').fill('https://www.relocateforwork.com/');
+  await page.getByRole('button', { name: 'Post - $' }).click();
+  await page.frameLocator('iframe[name="paystack-checkout-gMQYz"]').getByTestId('cardNumberInput').click();
+});
